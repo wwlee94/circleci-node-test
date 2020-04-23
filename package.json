@@ -4,8 +4,7 @@
   "description": "프로그라피 6기 - 'USO'앱을 개발하는 4팀의 TypeScript와 Express를 이용한 Node.js 백엔드 서버",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
-    "start": "node dist",
+    "start": "npx tsc && node dist/src/App.js",
     "test": "jest",
     "dev": "nodemon --watch src/ src/App.ts"
   },
