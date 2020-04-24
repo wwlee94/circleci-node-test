@@ -5,6 +5,7 @@ jobs:
   build-and-test:
     executor:
       name: node/default
+      tag: 12.16
     working_directory: ~/repo
     steps:
       - checkout
@@ -12,7 +13,23 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+      - run: node --version
+  deploy-stage:
+    machine:
+      enabled: true
+    
+    steps:
+      - add_ssh_keys:
+          fingerprints: 
+            - be:b1:2e:1b:12:f8:cb:fc:7e:55:f7:f3:1d:ea:b9:9e
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST << EOF
+              echo "Deploy Over SSH"
+            EOF
 workflows:
     testing:
       jobs:
         - build-and-test
+        - deploy-stage
