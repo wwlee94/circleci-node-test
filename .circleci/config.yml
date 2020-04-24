@@ -43,8 +43,8 @@ workflows:
         - deploy-stage:
             requires:
               - build-and-test
-          filters:
-            branches:
-              only: 
-                - master
-                - develop
+            filters:
+              branches:
+                only: 
+                  - master
+                  - develop
