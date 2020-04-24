@@ -32,11 +32,11 @@ jobs:
 workflows:
     server-testing:
       jobs:
-        - build-and-test
-          filters:
-            branches:
-              only:
-                - /feature-.*/
+        - build-and-test:
+            filters:
+              branches:
+                only:
+                  - /feature-.*/
     server-deploy:
       jobs:
         - build-and-test
