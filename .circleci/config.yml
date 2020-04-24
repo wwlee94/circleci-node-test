@@ -28,6 +28,12 @@ jobs:
           command: |
             ssh $SSH_USER@$SSH_HOST \<< EOF
               echo "Deploy Over SSH"
+              cd circleci-node-test
+              git checkout $CIRCLE_BRANCH
+              docker stop prohraphy-server
+              docker build -t prography-team4-node-server:latest .
+              docker run -p 3000:3000 -d --rm=true --name prohraphy-server prography-team4-node-server:latest
+              docker ps -a
             EOF
 workflows:
     server-testing:
@@ -47,4 +53,4 @@ workflows:
               branches:
                 only: 
                   - master
-                  - develop
+                  # - develop
