@@ -1,5 +1,6 @@
 FROM node:12-alpine
 
+# Add package.json before rest of repo for caching
 # install node modules
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app/package.json

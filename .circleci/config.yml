@@ -25,16 +25,18 @@ jobs:
             - be:b1:2e:1b:12:f8:cb:fc:7e:55:f7:f3:1d:ea:b9:9e
       - run:
           name: Deploy Over SSH
-          command: |
-            ssh $SSH_USER@$SSH_HOST \<< EOF
-              echo "Deploy Over SSH"
-              cd circleci-node-test
-              git checkout $CIRCLE_BRANCH
-              docker stop prography-server
-              docker build -t prography-team4-node-server:latest .
-              docker run -p 3000:3000 -d --rm=true --name prography-server prography-team4-node-server:latest
-              docker ps -a
-            EOF
+          command: echo "Deploy Success"
+          # command: |
+          #   ssh $SSH_USER@$SSH_HOST \<< EOF
+          #     echo "Deploy Over SSH"
+          #     cd circleci-node-test
+          #     git checkout $CIRCLE_BRANCH
+          #     git pull
+          #     docker stop prography-server
+          #     docker build -t prography-team4-node-server:latest .
+          #     docker run -p 3000:3000 -d --rm=true --name prography-server prography-team4-node-server:latest
+          #     docker ps -a
+          #   EOF
 workflows:
     server-testing:
       jobs:
